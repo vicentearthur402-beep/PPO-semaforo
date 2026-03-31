@@ -7,11 +7,16 @@
 main {
     display: flex;
     height: 100vh;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 5vh;
+    justify-content: space-around;
 }
 .button {
     width: 80px;
+}
+
+#button-left, #button-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
