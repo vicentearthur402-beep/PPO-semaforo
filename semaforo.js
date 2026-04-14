@@ -49,11 +49,13 @@ const auto = document.getElementById('automatic');
 let intervalId = null;
 
 buttonLeft.addEventListener('click', () => {
+    stopAuto();
     console.log("Clicou left");
     turnOff.left();
 }); 
 
 buttonRight.addEventListener('click', () => {
+    stopAuto();
     console.log("click right")
     turnOff.right();
 });
@@ -77,5 +79,38 @@ const turnOff = {
     }
 }
 
+const states = [
+    () => {
+        semaforo_left.src = './img/verde.png';
+        semaforo_right.src = './img/vermelho.png';
+    },
+    () => {
+        semaforo_left.src = './img/amarelo.png';
+    },
+    () => {
+        semaforo_left.src = './img/vermelho.png';
+        semaforo_right.src = './img/verde.png';
+    },
+    () => {
+        semaforo_right.src = './img/amarelo.png';
+    }
+];
+
+auto.addEventListener('click', () => {
+    stopAuto();
+    intervalId = setInterval(autoChange,2000);
+})
+
+let state = 0;
+
+const autoChange = () => {
+    states[state]();
+    state = (state + 1) % states.length;
+}
+
+const stopAuto = () => {
+    clearInterval(intervalId);
+
+}
 
 
